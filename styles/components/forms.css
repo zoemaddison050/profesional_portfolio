@@ -113,12 +113,20 @@
   color: var(--color-error);
   margin-top: var(--space-2);
   line-height: var(--line-height-normal);
-  display: flex;
+  display: none; /* Hidden by default */
   align-items: center;
   gap: var(--space-2);
 }
 
-.form__error::before {
+.form__error.show {
+  display: flex; /* Show when .show class is added */
+}
+
+.form__error:empty {
+  display: none !important; /* Force hide empty error divs */
+}
+
+.form__error.show::before {
   content: "⚠";
   font-size: var(--font-size-base);
 }

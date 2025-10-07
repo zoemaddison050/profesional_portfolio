@@ -1077,25 +1077,27 @@
           <div class="contact__content">
             <div class="contact__form-container">
               <form
-                action="https://formspree.io/f/meorleqk"
+                action="https://getform.io/f/aejemjdb"
                 id="contact-form"
                 method="POST"
                 class="contact__form"
                 novalidate
               >
-                <!-- Formspree configuration -->
+                <!-- Getform.io configuration -->
+                <!-- Subject line for better email organization -->
                 <input
                   type="hidden"
-                  name="_subject"
+                  name="subject"
                   value="New Contact Form Submission from Portfolio"
                 />
-                <!-- Formspree redirect pages -->
-                <input type="hidden" name="_next" value="success.html" />
-                <input type="hidden" name="_error" value="error.html" />
-                <!-- Honeypot spam protection for Formspree -->
-                <input type="text" name="_gotcha" style="display: none" />
+                <!-- Honeypot spam protection for Getform.io -->
+                <input
+                  type="hidden"
+                  name="_gotcha"
+                  style="display: none !important"
+                />
 
-                <div class="form__group">
+                <div class="form__group"></div>
                   <label for="full-name" class="form__label">
                     Full Name <span class="form__required">*</span>
                   </label>
@@ -1167,7 +1169,7 @@
                       If you do not see the captcha, please disable your ad
                       blocker or privacy extensions for this page.
                     </p>
-                  </div>
+                  </div>zz
                 </div>
 
                 <div class="form__actions">

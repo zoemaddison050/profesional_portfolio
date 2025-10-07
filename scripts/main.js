@@ -662,11 +662,34 @@
     forms.forEach((form) => {
       form.addEventListener("submit", handleFormSubmit);
 
+      // Clean up any existing error states on page load
+      const existingErrors = form.querySelectorAll(".form__error");
+      existingErrors.forEach((error) => {
+        error.classList.remove("show");
+        error.textContent = "";
+      });
+
       // Real-time validation
       const inputs = form.querySelectorAll("input, textarea, select");
       inputs.forEach((input) => {
-        input.addEventListener("blur", () => validateField(input));
-        input.addEventListener("input", () => clearFieldError(input));
+        // Clean up any existing input error states
+        input.classList.remove("form__input--error", "form__input--success");
+
+        // Only validate on blur if the field has been touched and has content
+        input.addEventListener("blur", () => {
+          if (input.value.trim() !== "") {
+            validateField(input);
+          }
+        });
+
+        // Clear errors and validate on input for better UX
+        input.addEventListener("input", () => {
+          clearFieldError(input);
+          // If field has content, validate in real-time
+          if (input.value.trim() !== "") {
+            validateField(input);
+          }
+        });
       });
     });
 
@@ -722,22 +745,71 @@
       return;
     }
 
-    // Check if this is the contact form with Formspree
+    // Check if this is the contact form with Getform.io
     if (form.id === "contact-form") {
-      // For Formspree, we'll allow natural form submission with redirects
-      // Just show loading state and let the form submit naturally
+      e.preventDefault(); // Prevent default to handle with JavaScript
+      await handleGetformSubmission(form, formData, submitButton);
+    } else {
+      // Handle other forms with generic logic
+      e.preventDefault();
+      await handleGenericFormSubmission(form, formData, submitButton);
+    }
+  }
+
+  async function handleGetformSubmission(form, formData, submitButton) {
+    try {
+      console.log("🚀 Starting Getform.io submission...");
+
+      // Show loading state
       if (submitButton) {
         submitButton.classList.add("btn--loading");
         submitButton.disabled = true;
       }
 
-      // Don't prevent default - let the form submit naturally to Formspree
-      // Formspree will handle the redirect to success.html or error.html
-      return;
-    } else {
-      // Handle other forms with generic logic
-      e.preventDefault();
-      await handleGenericFormSubmission(form, formData, submitButton);
+      // Debug: Log form data
+      console.log("📝 Form data being sent:");
+      for (let [key, value] of formData.entries()) {
+        console.log(`  ${key}: ${value}`);
+      }
+
+      // Check for hCaptcha response
+      const captchaResponse = window.hcaptcha
+        ? window.hcaptcha.getResponse()
+        : null;
+      console.log(
+        "🔒 hCaptcha response:",
+        captchaResponse ? "Present" : "Missing"
+      );
+
+      if (captchaResponse) {
+        formData.append("h-captcha-response", captchaResponse);
+      }
+
+      // Submit to Getform.io
+      console.log("📡 Submitting to Getform.io...");
+      const response = await fetch("https://getform.io/f/aejemjdb", {
+        method: "POST",
+        body: formData,
+      });
+
+      console.log("📡 Response status:", response.status);
+      console.log("📡 Response ok:", response.ok);
+
+      if (response.ok) {
+        console.log(
+          "✅ Form submission successful! Redirecting to success page..."
+        );
+        // Redirect to success page
+        window.location.href = "success.html";
+      } else {
+        console.log("❌ Form submission failed. Redirecting to error page...");
+        // Redirect to error page
+        window.location.href = "error.html";
+      }
+    } catch (error) {
+      console.error("❌ Form submission error:", error);
+      // Redirect to error page on any error
+      window.location.href = "error.html";
     }
   }
 
@@ -872,17 +944,22 @@
     if (errorElement) {
       errorElement.classList.remove("show");
       errorElement.textContent = "";
-    } else {
-      // Fallback: remove any error element in parent
-      const existingError = field.parentNode.querySelector(".form__error");
-      if (existingError) {
-        existingError.remove();
-      }
+    }
+
+    // Also remove any error elements in the parent container
+    const parentContainer = field.closest(".form__group");
+    if (parentContainer) {
+      const allErrors = parentContainer.querySelectorAll(".form__error");
+      allErrors.forEach((error) => {
+        error.classList.remove("show");
+        error.textContent = "";
+      });
     }
   }
 
   function clearFieldError(field) {
     field.classList.remove("form__input--error");
+    field.classList.remove("form__input--success");
     removeFieldError(field);
   }
 
