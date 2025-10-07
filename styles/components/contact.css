@@ -302,3 +302,15 @@
     display: none;
   }
 }
+/* hCaptcha centering styles */
+.form__captcha-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+}
+
+.form__captcha-container .h-captcha {
+  margin: 0 auto;
+}

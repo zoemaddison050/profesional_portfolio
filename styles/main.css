@@ -81,7 +81,7 @@
 .success-description,
 .error-description {
   font-size: 1.125rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   margin-bottom: 2rem;
   line-height: 1.6;
 }
@@ -105,7 +105,7 @@
 }
 
 .success-note {
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   line-height: 1.6;
 }
 
@@ -123,7 +123,7 @@
 
 .contact-methods li {
   margin-bottom: 0.75rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .contact-methods a {
@@ -153,7 +153,7 @@
 
 .error-troubleshooting li {
   margin-bottom: 0.5rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 .error-navigation {
@@ -193,6 +193,131 @@
   .error-actions {
     flex-direction: column;
     align-items: center;
+  }
+
+  .success-actions .btn,
+  .error-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+/* Force text visibility on success/error pages */
+.error-title,
+.success-title {
+  color: #1f2937 !important; /* Dark gray */
+  font-weight: 600 !important;
+}
+
+.error-description,
+.success-description {
+  color: #374151 !important; /* Medium dark gray */
+  font-weight: 400 !important;
+}
+
+.error-alternatives h3,
+.success-info h3 {
+  color: #1f2937 !important; /* Dark gray */
+  font-weight: 600 !important;
+}
+
+.contact-methods li,
+.success-note {
+  color: #374151 !important; /* Medium dark gray */
+}
+
+.contact-methods strong {
+  color: #1f2937 !important; /* Dark gray */
+}
+
+.error-troubleshooting summary {
+  color: #1f2937 !important; /* Dark gray */
+}
+
+.error-troubleshooting li {
+  color: #374151 !important; /* Medium dark gray */
+}
+
+/* Ensure all text in success/error cards is visible */
+.success-content *,
+.error-content * {
+  color: #374151 !important;
+}
+
+.success-content h1,
+.success-content h2,
+.success-content h3,
+.success-content strong,
+.error-content h1,
+.error-content h2,
+.error-content h3,
+.error-content strong {
+  color: #1f2937 !important;
+}
+/* Button styling for success/error pages */
+.success-actions .btn,
+.error-actions .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  min-width: 160px;
+  margin: 4px;
+}
+
+/* Primary button styling */
+.success-actions .btn--primary,
+.error-actions .btn--primary {
+  background-color: #2563eb !important;
+  color: white !important;
+  border-color: #2563eb;
+}
+
+.success-actions .btn--primary:hover,
+.error-actions .btn--primary:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Secondary button styling */
+.success-actions .btn--secondary,
+.error-actions .btn--secondary {
+  background-color: transparent !important;
+  color: #2563eb !important;
+  border-color: #2563eb;
+}
+
+.success-actions .btn--secondary:hover,
+.error-actions .btn--secondary:hover {
+  background-color: #2563eb !important;
+  color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Button container styling */
+.success-actions,
+.error-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+/* Responsive button styling */
+@media (max-width: 768px) {
+  .success-actions,
+  .error-actions {
+    flex-direction: column;
+    gap: 12px;
   }
 
   .success-actions .btn,

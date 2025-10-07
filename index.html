@@ -69,8 +69,6 @@
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://js.hcaptcha.com" />
-    <link rel="preconnect" href="https://web3forms.com" />
 
     <!-- Preload critical resources -->
     <link rel="preload" href="styles/main.css" as="style" />
@@ -146,32 +144,8 @@
       Rebecca Lee Jin - Licensed Investment Consultant | J.P. Morgan Securities
     </title>
     <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-      var _smartsupp = _smartsupp || {};
-      _smartsupp.key = "c541f8fcbb2ed976098196ed81c2f74be9a6dbb1";
-      window.smartsupp ||
-        (function (d) {
-          var s,
-            c,
-            o = (smartsupp = function () {
-              o._.push(arguments);
-            });
-          o._ = [];
-          s = d.getElementsByTagName("script")[0];
-          c = d.createElement("script");
-          c.type = "text/javascript";
-          c.charset = "utf-8";
-          c.async = true;
-          c.src = "https://www.smartsuppchat.com/loader.js?";
-          s.parentNode.insertBefore(c, s);
-        })(document);
-    </script>
-    <noscript>
-      Powered by
-      <a href="https://www.smartsupp.com" target="_blank"
-        >Smartsupp</a
-      ></noscript
-    >
+    <script type="text/javascript">var _smartsupp = _smartsupp || {};_smartsupp.key = 'c541f8fcbb2ed976098196ed81c2f74be9a6dbb1';window.smartsupp||(function(d) {var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];s=d.getElementsByTagName('script')[0];c=d.createElement('script');c.type='text/javascript';c.charset='utf-8';c.async=true;c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);})(document);</script>
+    <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
   </head>
   <body>
     <!-- Skip Navigation Links for Accessibility -->
@@ -1077,25 +1051,25 @@
           <div class="contact__content">
             <div class="contact__form-container">
               <form
-                action="https://getform.io/f/aejemjdb"
+                action="https://api.web3forms.com/submit"
                 id="contact-form"
                 method="POST"
                 class="contact__form"
                 novalidate
               >
-                <!-- Getform.io configuration -->
-                <!-- Subject line for better email organization -->
+                <!-- Web3Forms configuration -->
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="51fa5d15-c3ff-4aee-ac51-cd88cded5a79"
+                />
                 <input
                   type="hidden"
                   name="subject"
                   value="New Contact Form Submission from Portfolio"
                 />
-                <!-- Honeypot spam protection for Getform.io -->
-                <input
-                  type="hidden"
-                  name="_gotcha"
-                  style="display: none !important"
-                />
+                <!-- Honeypot spam protection -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
                 <div class="form__group"></div>
                   <label for="full-name" class="form__label">
@@ -1158,18 +1132,11 @@
                   ></div>
                 </div>
 
+                <!-- Step 1: Add hCaptcha widget -->
                 <div class="form__group">
                   <div class="form__captcha-container">
-                    <div
-                      class="h-captcha"
-                      data-sitekey="402e0eea-d1ee-4374-9554-1bc063f63a40"
-                      data-callback="hcaptchaCallback"
-                    ></div>
-                    <p class="form__captcha-note">
-                      If you do not see the captcha, please disable your ad
-                      blocker or privacy extensions for this page.
-                    </p>
-                  </div>zz
+                    <div class="h-captcha" data-captcha="true" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
+                  </div>
                 </div>
 
                 <div class="form__actions">
@@ -1427,6 +1394,7 @@
 
     <!-- External scripts (async) -->
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <!-- Development/testing scripts (defer, can be removed in production) -->
     <script src="scripts/utils/browserTesting.js" defer></script>

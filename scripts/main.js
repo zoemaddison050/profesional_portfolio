@@ -745,10 +745,10 @@
       return;
     }
 
-    // Check if this is the contact form with Getform.io
+    // Check if this is the contact form with Web3Forms
     if (form.id === "contact-form") {
       e.preventDefault(); // Prevent default to handle with JavaScript
-      await handleGetformSubmission(form, formData, submitButton);
+      await handleWeb3FormsSubmission(form, formData, submitButton);
     } else {
       // Handle other forms with generic logic
       e.preventDefault();
@@ -756,53 +756,34 @@
     }
   }
 
-  async function handleGetformSubmission(form, formData, submitButton) {
+  async function handleWeb3FormsSubmission(form, formData, submitButton) {
     try {
-      console.log("🚀 Starting Getform.io submission...");
-
       // Show loading state
       if (submitButton) {
         submitButton.classList.add("btn--loading");
         submitButton.disabled = true;
       }
 
-      // Debug: Log form data
-      console.log("📝 Form data being sent:");
-      for (let [key, value] of formData.entries()) {
-        console.log(`  ${key}: ${value}`);
-      }
-
       // Check for hCaptcha response
       const captchaResponse = window.hcaptcha
         ? window.hcaptcha.getResponse()
         : null;
-      console.log(
-        "🔒 hCaptcha response:",
-        captchaResponse ? "Present" : "Missing"
-      );
-
       if (captchaResponse) {
         formData.append("h-captcha-response", captchaResponse);
       }
 
-      // Submit to Getform.io
-      console.log("📡 Submitting to Getform.io...");
-      const response = await fetch("https://getform.io/f/aejemjdb", {
+      // Submit to Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
 
-      console.log("📡 Response status:", response.status);
-      console.log("📡 Response ok:", response.ok);
+      const data = await response.json();
 
-      if (response.ok) {
-        console.log(
-          "✅ Form submission successful! Redirecting to success page..."
-        );
+      if (data.success) {
         // Redirect to success page
         window.location.href = "success.html";
       } else {
-        console.log("❌ Form submission failed. Redirecting to error page...");
         // Redirect to error page
         window.location.href = "error.html";
       }
