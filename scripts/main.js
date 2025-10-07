@@ -751,40 +751,27 @@
         resultDiv.textContent = "";
       }
 
-      // For now, let's simulate a successful submission and use mailto
-      // You'll need to get your own Web3Forms access key from https://web3forms.com
+      // Check for hCaptcha response
+      const captchaResponse = window.hcaptcha
+        ? window.hcaptcha.getResponse()
+        : null;
+      if (captchaResponse) {
+        formData.append("h-captcha-response", captchaResponse);
+      }
 
-      // Get form data
-      const name = formData.get("name") || "";
-      const email = formData.get("email") || "";
-      const message = formData.get("message") || "";
+      // Submit to Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
 
-      // Create mailto link as backup
-      const subject = encodeURIComponent(
-        "Contact Form Submission from " + name
-      );
-      const body = encodeURIComponent(
-        `Name: ${name}\n` +
-          `Email: ${email}\n` +
-          `Message:\n${message}\n\n` +
-          `Sent from: ${window.location.href}`
-      );
-
-      // For now, just show success and open mailto
-      setTimeout(() => {
-        const mailtoLink = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
-        window.open(mailtoLink, "_blank");
-      }, 1000);
-
-      // Simulate successful response
-      const response = { ok: true, status: 200 };
-      const data = { success: true };
+      const data = await response.json();
 
       if (data.success) {
         // Show success message
         showFormMessage(
           resultDiv,
-          "Thank you! Your email client will open to send the message. Please send it to complete your contact request.",
+          "Thank you for your message! I'll get back to you within 24 hours.",
           "success"
         );
 
@@ -816,7 +803,7 @@
           window.hcaptcha.reset();
         }
       } else {
-        throw new Error("Form submission failed");
+        throw new Error(data.message || "Form submission failed");
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -824,8 +811,8 @@
 
       showFormMessage(
         resultDiv,
-        "Your default email client will open to send the message. If it doesn't work, please use the contact support button below.",
-        "info"
+        "Sorry, there was an error sending your message. Please try again or use the contact support button below.",
+        "error"
       );
 
       // Announce error to screen readers
@@ -841,23 +828,6 @@
         submitButton.disabled = false;
       }
     }
-  }
-
-  function handleMailtoFallback(form, formData) {
-    const name = formData.get("name") || "";
-    const email = formData.get("email") || "";
-    const message = formData.get("message") || "";
-
-    const subject = encodeURIComponent("Contact Form Submission from " + name);
-    const body = encodeURIComponent(
-      `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Message:\n${message}\n\n` +
-        `Sent from: ${window.location.href}`
-    );
-
-    const mailtoLink = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
-    window.open(mailtoLink, "_blank");
   }
 
   async function handleGenericFormSubmission(form, formData, submitButton) {
