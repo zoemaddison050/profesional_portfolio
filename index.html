@@ -1089,6 +1089,9 @@
                   name="_subject"
                   value="New Contact Form Submission from Portfolio"
                 />
+                <!-- Formspree redirect pages -->
+                <input type="hidden" name="_next" value="success.html" />
+                <input type="hidden" name="_error" value="error.html" />
                 <!-- Honeypot spam protection for Formspree -->
                 <input type="text" name="_gotcha" style="display: none" />
 
@@ -1153,13 +1156,11 @@
                   ></div>
                 </div>
 
-                <!-- Temporarily disabled hCaptcha for testing -->
                 <div class="form__group">
                   <div class="form__captcha-container">
                     <div
                       class="h-captcha"
-                      data-captcha="true"
-                      data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                      data-sitekey="402e0eea-d1ee-4374-9554-1bc063f63a40"
                       data-callback="hcaptchaCallback"
                     ></div>
                     <p class="form__captcha-note">
@@ -1424,7 +1425,6 @@
 
     <!-- External scripts (async) -->
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-    <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <!-- Development/testing scripts (defer, can be removed in production) -->
     <script src="scripts/utils/browserTesting.js" defer></script>

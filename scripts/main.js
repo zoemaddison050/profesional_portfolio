@@ -711,8 +711,6 @@
   }
 
   async function handleFormSubmit(e) {
-    e.preventDefault();
-
     const form = e.target;
     const formData = new FormData(form);
     const submitButton = form.querySelector('button[type="submit"]');
@@ -720,121 +718,26 @@
 
     // Validate form
     if (!validateForm(form)) {
+      e.preventDefault();
       return;
     }
 
     // Check if this is the contact form with Formspree
     if (form.id === "contact-form") {
-      await handleFormspreeSubmission(form, formData, submitButton, resultDiv);
-    } else {
-      // Handle other forms with generic logic
-      await handleGenericFormSubmission(form, formData, submitButton);
-    }
-  }
-
-  async function handleFormspreeSubmission(
-    form,
-    formData,
-    submitButton,
-    resultDiv
-  ) {
-    try {
-      // Show loading state
+      // For Formspree, we'll allow natural form submission with redirects
+      // Just show loading state and let the form submit naturally
       if (submitButton) {
         submitButton.classList.add("btn--loading");
         submitButton.disabled = true;
       }
 
-      // Clear previous messages
-      if (resultDiv) {
-        resultDiv.className = "form__message";
-        resultDiv.textContent = "";
-      }
-
-      // Check for hCaptcha response
-      const captchaResponse = window.hcaptcha
-        ? window.hcaptcha.getResponse()
-        : null;
-      if (captchaResponse) {
-        formData.append("h-captcha-response", captchaResponse);
-      }
-
-      // Submit to Formspree
-      const response = await fetch("https://formspree.io/f/meorleqk", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        // Formspree submission successful
-        // Show success message
-        showFormMessage(
-          resultDiv,
-          "Thank you for your message! I'll get back to you within 24 hours.",
-          "success"
-        );
-
-        // Reset form
-        form.reset();
-
-        // Clear any field errors
-        const errorElements = form.querySelectorAll(".form__error.show");
-        errorElements.forEach((error) => {
-          error.classList.remove("show");
-          error.textContent = "";
-        });
-
-        // Remove success/error classes from inputs
-        const inputs = form.querySelectorAll(".form__input");
-        inputs.forEach((input) => {
-          input.classList.remove("form__input--success", "form__input--error");
-        });
-
-        // Announce success to screen readers
-        if (window.accessibilityManager) {
-          window.accessibilityManager.announce(
-            "Message sent successfully! I'll get back to you within 24 hours."
-          );
-        }
-
-        // Reset captcha if present
-        if (window.hcaptcha) {
-          window.hcaptcha.reset();
-        }
-      } else {
-        throw new Error("Form submission failed");
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      console.error("Error details:", error.message);
-      console.error("Error stack:", error.stack);
-
-      // More specific error message based on error type
-      let errorMessage =
-        "Sorry, there was an error sending your message. Please try again or use the contact support button below.";
-
-      if (error.name === "TypeError" && error.message.includes("fetch")) {
-        errorMessage =
-          "Network error: Unable to connect to the email service. Please check your internet connection or use the contact support button below.";
-      }
-
-      showFormMessage(resultDiv, errorMessage, "error");
-
-      // Announce error to screen readers
-      if (window.accessibilityManager) {
-        window.accessibilityManager.announce(
-          "There was an error sending your message. Please try again."
-        );
-      }
-    } finally {
-      // Reset loading state
-      if (submitButton) {
-        submitButton.classList.remove("btn--loading");
-        submitButton.disabled = false;
-      }
+      // Don't prevent default - let the form submit naturally to Formspree
+      // Formspree will handle the redirect to success.html or error.html
+      return;
+    } else {
+      // Handle other forms with generic logic
+      e.preventDefault();
+      await handleGenericFormSubmission(form, formData, submitButton);
     }
   }
 
