@@ -751,6 +751,14 @@
         resultDiv.textContent = "";
       }
 
+      // Check for hCaptcha response
+      const captchaResponse = window.hcaptcha
+        ? window.hcaptcha.getResponse()
+        : null;
+      if (captchaResponse) {
+        formData.append("h-captcha-response", captchaResponse);
+      }
+
       // Submit to Web3Forms
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -774,6 +782,7 @@
         const errorElements = form.querySelectorAll(".form__error.show");
         errorElements.forEach((error) => {
           error.classList.remove("show");
+          error.textContent = "";
         });
 
         // Remove success/error classes from inputs
@@ -858,6 +867,28 @@
         isValid = false;
       }
     });
+
+    // Check hCaptcha if present
+    if (form.id === "contact-form" && window.hcaptcha) {
+      const captchaResponse = window.hcaptcha.getResponse();
+      if (!captchaResponse) {
+        isValid = false;
+        // Show captcha error message
+        const captchaContainer = form.querySelector(".form__captcha-container");
+        if (captchaContainer) {
+          let errorDiv = captchaContainer.querySelector(".form__error");
+          if (!errorDiv) {
+            errorDiv = document.createElement("div");
+            errorDiv.className = "form__error";
+            errorDiv.setAttribute("role", "alert");
+            errorDiv.setAttribute("aria-live", "polite");
+            captchaContainer.appendChild(errorDiv);
+          }
+          errorDiv.textContent = "Please complete the captcha verification.";
+          errorDiv.classList.add("show");
+        }
+      }
+    }
 
     return isValid;
   }
@@ -1251,6 +1282,18 @@
       }
     };
   }
+
+  // hCaptcha callback to clear errors when completed
+  window.hcaptchaCallback = function () {
+    const captchaContainer = document.querySelector(".form__captcha-container");
+    if (captchaContainer) {
+      const errorDiv = captchaContainer.querySelector(".form__error");
+      if (errorDiv) {
+        errorDiv.classList.remove("show");
+        errorDiv.textContent = "";
+      }
+    }
+  };
 
   // Initialize when DOM is ready
   if (document.readyState === "loading") {

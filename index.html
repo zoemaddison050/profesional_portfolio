@@ -1088,6 +1088,16 @@
                   name="access_key"
                   value="a1ad67bb-84ed-4b0d-8ab1-777e45f568b8"
                 />
+                <input
+                  type="hidden"
+                  name="subject"
+                  value="New Contact Form Submission from Portfolio"
+                />
+                <input
+                  type="hidden"
+                  name="from_name"
+                  value="Portfolio Contact Form"
+                />
 
                 <div class="form__group">
                   <label for="full-name" class="form__label">
@@ -1096,7 +1106,7 @@
                   <input
                     type="text"
                     id="full-name"
-                    name="full-name"
+                    name="name"
                     class="form__input"
                     required
                     aria-describedby="full-name-error"
@@ -1156,6 +1166,7 @@
                       class="h-captcha"
                       data-captcha="true"
                       data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                      data-callback="hcaptchaCallback"
                     ></div>
                     <p class="form__captcha-note">
                       If you do not see the captcha, please disable your ad
