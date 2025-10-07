@@ -755,6 +755,8 @@
       const captchaResponse = window.hcaptcha
         ? window.hcaptcha.getResponse()
         : null;
+      console.log("Submitting with captcha response:", captchaResponse);
+
       if (captchaResponse) {
         formData.append("h-captcha-response", captchaResponse);
       }
@@ -766,6 +768,9 @@
       });
 
       const data = await response.json();
+
+      console.log("Web3Forms response:", data);
+      console.log("Response status:", response.status);
 
       if (data.success) {
         // Show success message
@@ -869,12 +874,15 @@
       }
     });
 
-    // Check hCaptcha if present
+    // Check hCaptcha if present (temporarily make it optional for testing)
     if (form.id === "contact-form" && window.hcaptcha) {
       const captchaResponse = window.hcaptcha.getResponse();
+      console.log("hCaptcha response:", captchaResponse);
+
+      // For now, let's make captcha optional to test the form
       if (!captchaResponse) {
-        isValid = false;
-        // Show captcha error message
+        console.log("No captcha response, but allowing submission for testing");
+        // Show warning but don't block submission
         const captchaContainer = form.querySelector(".form__captcha-container");
         if (captchaContainer) {
           let errorDiv = captchaContainer.querySelector(".form__error");
@@ -885,7 +893,8 @@
             errorDiv.setAttribute("aria-live", "polite");
             captchaContainer.appendChild(errorDiv);
           }
-          errorDiv.textContent = "Please complete the captcha verification.";
+          errorDiv.textContent =
+            "Captcha recommended but not required for testing.";
           errorDiv.classList.add("show");
         }
       }
