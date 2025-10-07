@@ -723,16 +723,16 @@
       return;
     }
 
-    // Check if this is the contact form with Web3Forms
+    // Check if this is the contact form with Formspree
     if (form.id === "contact-form") {
-      await handleWeb3FormsSubmission(form, formData, submitButton, resultDiv);
+      await handleFormspreeSubmission(form, formData, submitButton, resultDiv);
     } else {
       // Handle other forms with generic logic
       await handleGenericFormSubmission(form, formData, submitButton);
     }
   }
 
-  async function handleWeb3FormsSubmission(
+  async function handleFormspreeSubmission(
     form,
     formData,
     submitButton,
@@ -755,24 +755,21 @@
       const captchaResponse = window.hcaptcha
         ? window.hcaptcha.getResponse()
         : null;
-      console.log("Submitting with captcha response:", captchaResponse);
-
       if (captchaResponse) {
         formData.append("h-captcha-response", captchaResponse);
       }
 
-      // Submit to Web3Forms
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // Submit to Formspree
+      const response = await fetch("https://formspree.io/f/meorleqk", {
         method: "POST",
         body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
 
-      const data = await response.json();
-
-      console.log("Web3Forms response:", data);
-      console.log("Response status:", response.status);
-
-      if (data.success) {
+      if (response.ok) {
+        // Formspree submission successful
         // Show success message
         showFormMessage(
           resultDiv,
@@ -808,17 +805,23 @@
           window.hcaptcha.reset();
         }
       } else {
-        throw new Error(data.message || "Form submission failed");
+        throw new Error("Form submission failed");
       }
     } catch (error) {
       console.error("Form submission error:", error);
       console.error("Error details:", error.message);
+      console.error("Error stack:", error.stack);
 
-      showFormMessage(
-        resultDiv,
-        "Sorry, there was an error sending your message. Please try again or use the contact support button below.",
-        "error"
-      );
+      // More specific error message based on error type
+      let errorMessage =
+        "Sorry, there was an error sending your message. Please try again or use the contact support button below.";
+
+      if (error.name === "TypeError" && error.message.includes("fetch")) {
+        errorMessage =
+          "Network error: Unable to connect to the email service. Please check your internet connection or use the contact support button below.";
+      }
+
+      showFormMessage(resultDiv, errorMessage, "error");
 
       // Announce error to screen readers
       if (window.accessibilityManager) {
@@ -874,15 +877,12 @@
       }
     });
 
-    // Check hCaptcha if present (temporarily make it optional for testing)
+    // Check hCaptcha if present
     if (form.id === "contact-form" && window.hcaptcha) {
       const captchaResponse = window.hcaptcha.getResponse();
-      console.log("hCaptcha response:", captchaResponse);
-
-      // For now, let's make captcha optional to test the form
       if (!captchaResponse) {
-        console.log("No captcha response, but allowing submission for testing");
-        // Show warning but don't block submission
+        isValid = false;
+        // Show captcha error message
         const captchaContainer = form.querySelector(".form__captcha-container");
         if (captchaContainer) {
           let errorDiv = captchaContainer.querySelector(".form__error");
@@ -893,8 +893,7 @@
             errorDiv.setAttribute("aria-live", "polite");
             captchaContainer.appendChild(errorDiv);
           }
-          errorDiv.textContent =
-            "Captcha recommended but not required for testing.";
+          errorDiv.textContent = "Please complete the captcha verification.";
           errorDiv.classList.add("show");
         }
       }

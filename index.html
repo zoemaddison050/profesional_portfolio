@@ -1077,34 +1077,20 @@
           <div class="contact__content">
             <div class="contact__form-container">
               <form
-                action="https://api.web3forms.com/submit"
+                action="https://formspree.io/f/meorleqk"
                 id="contact-form"
                 method="POST"
                 class="contact__form"
                 novalidate
               >
+                <!-- Formspree configuration -->
                 <input
                   type="hidden"
-                  name="access_key"
-                  value="a1ad67bb-84ed-4b0d-8ab1-777e45f568b8"
-                />
-                <input
-                  type="hidden"
-                  name="subject"
+                  name="_subject"
                   value="New Contact Form Submission from Portfolio"
                 />
-                <input
-                  type="hidden"
-                  name="from_name"
-                  value="Portfolio Contact Form"
-                />
-                <!-- Honeypot Spam Protection -->
-                <input
-                  type="checkbox"
-                  name="botcheck"
-                  class="hidden"
-                  style="display: none"
-                />
+                <!-- Honeypot spam protection for Formspree -->
+                <input type="text" name="_gotcha" style="display: none" />
 
                 <div class="form__group">
                   <label for="full-name" class="form__label">
@@ -1168,7 +1154,7 @@
                 </div>
 
                 <!-- Temporarily disabled hCaptcha for testing -->
-                <div class="form__group" style="display: none">
+                <div class="form__group">
                   <div class="form__captcha-container">
                     <div
                       class="h-captcha"
