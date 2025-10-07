@@ -1,0 +1,310 @@
+/* Form Components */
+
+.form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.form__group {
+  margin-bottom: var(--space-6);
+}
+
+.form__label {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+
+.form__label--required::after {
+  content: " *";
+  color: var(--color-error);
+}
+
+.form__input,
+.form__textarea,
+.form__select {
+  width: 100%;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.form__input:focus,
+.form__textarea:focus,
+.form__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form__input:hover,
+.form__textarea:hover,
+.form__select:hover {
+  border-color: var(--color-border-dark);
+}
+
+.form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form__select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right var(--space-3) center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: var(--space-10);
+  appearance: none;
+}
+
+/* Input States */
+.form__input--error,
+.form__textarea--error,
+.form__select--error {
+  border-color: var(--color-error);
+}
+
+.form__input--error:focus,
+.form__textarea--error:focus,
+.form__select--error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form__input--success,
+.form__textarea--success,
+.form__select--success {
+  border-color: var(--color-success);
+}
+
+.form__input--success:focus,
+.form__textarea--success:focus,
+.form__select--success:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form__input:disabled,
+.form__textarea:disabled,
+.form__select:disabled {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Help Text */
+.form__help {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+  line-height: var(--line-height-normal);
+}
+
+.form__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin-top: var(--space-2);
+  line-height: var(--line-height-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.form__error::before {
+  content: "⚠";
+  font-size: var(--font-size-base);
+}
+
+.form__success {
+  font-size: var(--font-size-sm);
+  color: var(--color-success);
+  margin-top: var(--space-2);
+  line-height: var(--line-height-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.form__success::before {
+  content: "✓";
+  font-size: var(--font-size-base);
+}
+
+/* Checkbox and Radio */
+.form__checkbox,
+.form__radio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.form__checkbox input,
+.form__radio input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.form__checkbox label,
+.form__radio label {
+  cursor: pointer;
+  margin-bottom: 0;
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+/* Input Group */
+.form__input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.form__input-group .form__input {
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  border-right: none;
+}
+
+.form__input-group .btn {
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  border-left: none;
+}
+
+/* Form Actions */
+.form__actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: flex-end;
+  margin-top: var(--space-8);
+}
+
+.form__actions--center {
+  justify-content: center;
+}
+
+.form__actions--start {
+  justify-content: flex-start;
+}
+
+.form__actions--between {
+  justify-content: space-between;
+}
+
+/* Contact Form Specific */
+.contact-form {
+  background-color: var(--color-background);
+  padding: var(--space-8);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.contact-form__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+  text-align: center;
+}
+
+.contact-form__subtitle {
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--space-8);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Form Grid */
+.form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.form__grid .form__group--full {
+  grid-column: 1 / -1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: var(--space-6);
+  }
+
+  .form__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .form__actions {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .form__actions .btn {
+    width: 100%;
+  }
+}
+
+/* Loading State */
+.form--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.form--loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+/* File Input */
+.form__file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.form__file input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.form__file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-background-alt);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.form__file:hover .form__file-label {
+  background-color: var(--color-background-dark);
+  border-color: var(--color-border-dark);
+}

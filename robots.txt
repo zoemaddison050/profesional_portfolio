@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Disallow access to build and development files
+Disallow: /node_modules/
+Disallow: /scripts/build/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vscode/
+Disallow: /tests/
+Disallow: /*.config.js
+Disallow: /package*.json
+
+# Allow access to important assets
+Allow: /assets/
+Allow: /styles/
+Allow: /scripts/main.js
+Allow: /manifest.json
+Allow: /sw.js
+
+# Sitemap location
+Sitemap: https://rebeccaleejin.com/sitemap.xml
+
+# Crawl delay (optional - be respectful to crawlers)
+Crawl-delay: 1

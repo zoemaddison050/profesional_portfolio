@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="E-commerce Platform Case Study - Full-stack e-commerce solution with modern design, secure payments, and admin dashboard. Built with React, Node.js, and MongoDB by Rebecca Lee Jin."
+    />
+    <meta
+      name="keywords"
+      content="e-commerce platform, web development case study, React, Node.js, MongoDB, full-stack development, Rebecca Lee Jin, portfolio project"
+    />
+    <meta name="author" content="Rebecca Lee Jin" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://rebeccaleejin.com/project-detail.html"
+    />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="E-commerce Platform Case Study - Rebecca Lee Jin"
+    />
+    <meta
+      property="og:description"
+      content="Detailed case study of a modern e-commerce platform featuring secure payments, responsive design, and comprehensive admin dashboard. Built with React, Node.js, and MongoDB."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://rebeccaleejin.com/project-detail.html"
+    />
+    <meta
+      property="og:image"
+      content="https://rebeccaleejin.com/assets/images/project-1.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="E-commerce Platform Project Screenshot"
+    />
+    <meta property="og:site_name" content="Rebecca Lee Jin Portfolio" />
+    <meta property="article:author" content="Rebecca Lee Jin" />
+    <meta property="article:section" content="Web Development" />
+    <meta property="article:tag" content="React" />
+    <meta property="article:tag" content="Node.js" />
+    <meta property="article:tag" content="E-commerce" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="E-commerce Platform Case Study - Rebecca Lee Jin"
+    />
+    <meta
+      name="twitter:description"
+      content="Full-stack e-commerce solution with modern design and secure payments. Built with React, Node.js, and MongoDB."
+    />
+    <meta
+      name="twitter:image"
+      content="https://rebeccaleejin.com/assets/images/project-1.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="E-commerce Platform Project Screenshot"
+    />
+    <meta name="twitter:creator" content="@rebeccaleejin" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/LJ.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/LJ.png" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#2563EB" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="RLJ Portfolio" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "E-commerce Platform",
+        "description": "Full-stack e-commerce solution with modern design, secure payments, and comprehensive admin dashboard built with React, Node.js, and MongoDB.",
+        "author": {
+          "@type": "Person",
+          "name": "Rebecca Lee Jin",
+          "jobTitle": "Creative Web Designer & Developer",
+          "url": "https://rebeccaleejin.com"
+        },
+        "dateCreated": "2023",
+        "genre": "Web Development",
+        "keywords": [
+          "React",
+          "Node.js",
+          "MongoDB",
+          "E-commerce",
+          "Full-stack Development"
+        ],
+        "image": "https://rebeccaleejin.com/assets/images/project-1.jpg",
+        "url": "https://rebeccaleejin.com/project-detail.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Rebecca Lee Jin Portfolio",
+          "url": "https://rebeccaleejin.com"
+        }
+      }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <title>E-commerce Platform Case Study - Rebecca Lee Jin Portfolio</title>
+  </head>
+  <body>
+    <!-- Skip Navigation Links for Accessibility -->
+    <div class="skip-links">
+      <a href="#main-content" class="skip-link">Skip to main content</a>
+      <a href="#navigation" class="skip-link">Skip to navigation</a>
+      <a href="#project-overview" class="skip-link">Skip to project overview</a>
+      <a href="#project-gallery" class="skip-link">Skip to project gallery</a>
+    </div>
+
+    <!-- Live region for screen reader announcements -->
+    <div
+      id="live-region"
+      class="live-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+      <nav
+        id="navigation"
+        class="nav"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <div class="nav__container">
+          <a
+            href="index.html"
+            class="nav__logo"
+            aria-label="Rebecca Lee Jin - Home"
+          >
+            <span class="nav__logo-text">Rebecca Lee Jin</span>
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button
+            class="nav__toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+          </button>
+
+          <!-- Navigation Menu -->
+          <ul class="nav__menu" role="menubar">
+            <li class="nav__item" role="none">
+              <a href="index.html#about" class="nav__link" role="menuitem"
+                >About</a
+              >
+            </li>
+            <li class="nav__item" role="none">
+              <a
+                href="index.html#portfolio"
+                class="nav__link nav__link--active"
+                role="menuitem"
+                aria-current="page"
+                >Portfolio</a
+              >
+            </li>
+            <li class="nav__item" role="none">
+              <a href="index.html#services" class="nav__link" role="menuitem"
+                >Services</a
+              >
+            </li>
+            <li class="nav__item" role="none">
+              <a href="index.html#contact" class="nav__link" role="menuitem"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main" class="project-detail">
+      <!-- Breadcrumb Navigation -->
+      <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+        <div class="container">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a href="index.html" class="breadcrumb__link">Home</a>
+            </li>
+            <li class="breadcrumb__item">
+              <a href="index.html#portfolio" class="breadcrumb__link"
+                >Portfolio</a
+              >
+            </li>
+            <li
+              class="breadcrumb__item breadcrumb__item--current"
+              aria-current="page"
+            >
+              E-commerce Platform
+            </li>
+          </ol>
+          <a href="index.html#portfolio" class="breadcrumb__back-link">
+            <span class="breadcrumb__back-icon" aria-hidden="true">←</span>
+            Back to Portfolio
+          </a>
+        </div>
+      </nav>
+
+      <!-- Project Hero Section -->
+      <section class="project-hero" aria-labelledby="project-title">
+        <div class="container">
+          <div class="project-hero__content">
+            <div class="project-hero__meta">
+              <span class="project-hero__category">Web Development</span>
+              <time class="project-hero__date" datetime="2024">2024</time>
+            </div>
+            <h1 id="project-title" class="project-hero__title">
+              E-commerce Platform
+            </h1>
+            <p class="project-hero__subtitle">
+              Full-stack e-commerce solution with modern design, secure
+              payments, and comprehensive admin dashboard
+            </p>
+            <div class="project-hero__tags">
+              <span class="project-tag">React</span>
+              <span class="project-tag">Node.js</span>
+              <span class="project-tag">MongoDB</span>
+              <span class="project-tag">Stripe</span>
+              <span class="project-tag">AWS</span>
+            </div>
+            <div class="project-hero__actions">
+              <a
+                href="#"
+                class="btn btn--primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Live Site
+                <span class="btn__icon" aria-hidden="true">↗</span>
+              </a>
+              <a
+                href="#"
+                class="btn btn--outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Code
+                <span class="btn__icon" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-hero__image">
+            <picture>
+              <source srcset="assets/images/project-1.webp" type="image/webp" />
+              <img
+                src="assets/images/project-1.jpg"
+                alt="E-commerce platform homepage showing modern design and product grid"
+                class="project-hero__img"
+                width="800"
+                height="600"
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Overview Section -->
+      <section class="project-section" aria-labelledby="overview-heading">
+        <div class="container">
+          <div class="project-section__content">
+            <div class="project-section__sidebar">
+              <h2 id="overview-heading" class="project-section__title">
+                Project Overview
+              </h2>
+            </div>
+            <div class="project-section__main">
+              <div class="project-overview">
+                <div class="project-overview__description">
+                  <p>
+                    This comprehensive e-commerce platform was designed and
+                    developed to provide a seamless shopping experience for both
+                    customers and administrators. The project focused on
+                    creating a scalable, secure, and user-friendly solution that
+                    could handle high traffic volumes while maintaining
+                    excellent performance.
+                  </p>
+                  <p>
+                    The platform features a modern, responsive design with
+                    intuitive navigation, advanced search and filtering
+                    capabilities, secure payment processing, and a comprehensive
+                    admin dashboard for inventory and order management.
+                  </p>
+                </div>
+                <div class="project-overview__details">
+                  <div class="project-detail-grid">
+                    <div class="project-detail-item">
+                      <h3 class="project-detail-item__title">Role</h3>
+                      <p class="project-detail-item__value">
+                        Full-Stack Developer & UI/UX Designer
+                      </p>
+                    </div>
+                    <div class="project-detail-item">
+                      <h3 class="project-detail-item__title">Duration</h3>
+                      <p class="project-detail-item__value">3 months</p>
+                    </div>
+                    <div class="project-detail-item">
+                      <h3 class="project-detail-item__title">Team Size</h3>
+                      <p class="project-detail-item__value">Solo Project</p>
+                    </div>
+                    <div class="project-detail-item">
+                      <h3 class="project-detail-item__title">Client</h3>
+                      <p class="project-detail-item__value">Fashion Retailer</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Process Section -->
+      <section
+        class="project-section project-section--alt"
+        aria-labelledby="process-heading"
+      >
+        <div class="container">
+          <div class="project-section__content">
+            <div class="project-section__sidebar">
+              <h2 id="process-heading" class="project-section__title">
+                Design Process
+              </h2>
+            </div>
+            <div class="project-section__main">
+              <div class="project-process">
+                <div class="project-process__steps">
+                  <div class="project-process__step">
+                    <div class="project-process__step-number">01</div>
+                    <div class="project-process__step-content">
+                      <h3 class="project-process__step-title">
+                        Research & Discovery
+                      </h3>
+                      <p class="project-process__step-description">
+                        Conducted comprehensive market research and user
+                        interviews to understand customer needs and pain points
+                        in existing e-commerce solutions.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="project-process__step">
+                    <div class="project-process__step-number">02</div>
+                    <div class="project-process__step-content">
+                      <h3 class="project-process__step-title">
+                        Information Architecture
+                      </h3>
+                      <p class="project-process__step-description">
+                        Developed site maps and user flows to create an
+                        intuitive navigation structure that guides users
+                        seamlessly from discovery to purchase.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="project-process__step">
+                    <div class="project-process__step-number">03</div>
+                    <div class="project-process__step-content">
+                      <h3 class="project-process__step-title">
+                        Wireframing & Prototyping
+                      </h3>
+                      <p class="project-process__step-description">
+                        Created low-fidelity wireframes and interactive
+                        prototypes to test user interactions and validate design
+                        decisions before development.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="project-process__step">
+                    <div class="project-process__step-number">04</div>
+                    <div class="project-process__step-content">
+                      <h3 class="project-process__step-title">
+                        Development & Testing
+                      </h3>
+                      <p class="project-process__step-description">
+                        Built the platform using modern technologies with a
+                        focus on performance, security, and scalability.
+                        Conducted thorough testing across devices and browsers.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Results Section -->
+      <section class="project-section" aria-labelledby="results-heading">
+        <div class="container">
+          <div class="project-section__content">
+            <div class="project-section__sidebar">
+              <h2 id="results-heading" class="project-section__title">
+                Results & Impact
+              </h2>
+            </div>
+            <div class="project-section__main">
+              <div class="project-results">
+                <div class="project-results__description">
+                  <p>
+                    The e-commerce platform successfully launched and exceeded
+                    all performance expectations. The modern design and
+                    intuitive user experience resulted in significant
+                    improvements in key business metrics.
+                  </p>
+                </div>
+                <div class="project-results__metrics">
+                  <div class="project-metrics">
+                    <div class="project-metric">
+                      <div class="project-metric__value">45%</div>
+                      <div class="project-metric__label">
+                        Increase in Conversion Rate
+                      </div>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric__value">60%</div>
+                      <div class="project-metric__label">
+                        Reduction in Cart Abandonment
+                      </div>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric__value">2.3s</div>
+                      <div class="project-metric__label">
+                        Average Page Load Time
+                      </div>
+                    </div>
+                    <div class="project-metric">
+                      <div class="project-metric__value">98%</div>
+                      <div class="project-metric__label">
+                        Customer Satisfaction Score
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-results__features">
+                  <h3 class="project-results__features-title">
+                    Key Features Delivered
+                  </h3>
+                  <ul class="project-features-list">
+                    <li class="project-features-list__item">
+                      Responsive design optimized for all devices
+                    </li>
+                    <li class="project-features-list__item">
+                      Advanced search and filtering system
+                    </li>
+                    <li class="project-features-list__item">
+                      Secure payment processing with multiple options
+                    </li>
+                    <li class="project-features-list__item">
+                      Real-time inventory management
+                    </li>
+                    <li class="project-features-list__item">
+                      Comprehensive admin dashboard
+                    </li>
+                    <li class="project-features-list__item">
+                      Customer account management and order tracking
+                    </li>
+                    <li class="project-features-list__item">
+                      SEO optimization and analytics integration
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Gallery Section -->
+      <section
+        class="project-section project-section--alt"
+        aria-labelledby="gallery-heading"
+      >
+        <div class="container">
+          <div class="project-section__content">
+            <div class="project-section__sidebar">
+              <h2 id="gallery-heading" class="project-section__title">
+                Project Gallery
+              </h2>
+            </div>
+            <div class="project-section__main">
+              <div class="project-gallery">
+                <div class="project-gallery__grid">
+                  <div class="project-gallery__item">
+                    <button
+                      class="project-gallery__button"
+                      data-lightbox="project-gallery"
+                      data-src="assets/images/project-1.jpg"
+                    >
+                      <picture>
+                        <source
+                          srcset="assets/images/project-1.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="assets/images/project-1.jpg"
+                          alt="Homepage design showing hero section and featured products"
+                          class="project-gallery__image"
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                        />
+                      </picture>
+                      <div class="project-gallery__overlay">
+                        <span
+                          class="project-gallery__zoom-icon"
+                          aria-hidden="true"
+                          >🔍</span
+                        >
+                      </div>
+                    </button>
+                  </div>
+                  <div class="project-gallery__item">
+                    <button
+                      class="project-gallery__button"
+                      data-lightbox="project-gallery"
+                      data-src="assets/images/project-2.jpg"
+                    >
+                      <picture>
+                        <source
+                          srcset="assets/images/project-2.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="assets/images/project-2.jpg"
+                          alt="Product listing page with advanced filtering options"
+                          class="project-gallery__image"
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                        />
+                      </picture>
+                      <div class="project-gallery__overlay">
+                        <span
+                          class="project-gallery__zoom-icon"
+                          aria-hidden="true"
+                          >🔍</span
+                        >
+                      </div>
+                    </button>
+                  </div>
+                  <div class="project-gallery__item">
+                    <button
+                      class="project-gallery__button"
+                      data-lightbox="project-gallery"
+                      data-src="assets/images/project-3.jpg"
+                    >
+                      <picture>
+                        <source
+                          srcset="assets/images/project-3.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="assets/images/project-3.jpg"
+                          alt="Product detail page with image gallery and purchase options"
+                          class="project-gallery__image"
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                        />
+                      </picture>
+                      <div class="project-gallery__overlay">
+                        <span
+                          class="project-gallery__zoom-icon"
+                          aria-hidden="true"
+                          >🔍</span
+                        >
+                      </div>
+                    </button>
+                  </div>
+                  <div class="project-gallery__item">
+                    <button
+                      class="project-gallery__button"
+                      data-lightbox="project-gallery"
+                      data-src="assets/images/project-4.jpg"
+                    >
+                      <picture>
+                        <source
+                          srcset="assets/images/project-4.webp"
+                          type="image/webp"
+                        />
+                        <img
+                          src="assets/images/project-4.jpg"
+                          alt="Shopping cart and checkout process interface"
+                          class="project-gallery__image"
+                          loading="lazy"
+                          width="400"
+                          height="300"
+                        />
+                      </picture>
+                      <div class="project-gallery__overlay">
+                        <span
+                          class="project-gallery__zoom-icon"
+                          aria-hidden="true"
+                          >🔍</span
+                        >
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Project Navigation Section -->
+      <section class="project-navigation" aria-labelledby="project-nav-heading">
+        <div class="container">
+          <h2 id="project-nav-heading" class="sr-only">Project Navigation</h2>
+          <div class="project-nav">
+            <a href="#" class="project-nav__link project-nav__link--prev">
+              <div class="project-nav__arrow" aria-hidden="true">←</div>
+              <div class="project-nav__content">
+                <span class="project-nav__label">Previous Project</span>
+                <span class="project-nav__title">Mobile Banking App</span>
+              </div>
+            </a>
+            <a
+              href="index.html#portfolio"
+              class="project-nav__link project-nav__link--all"
+            >
+              <div class="project-nav__grid-icon" aria-hidden="true">⊞</div>
+              <span class="project-nav__label">All Projects</span>
+            </a>
+            <a href="#" class="project-nav__link project-nav__link--next">
+              <div class="project-nav__content">
+                <span class="project-nav__label">Next Project</span>
+                <span class="project-nav__title">Tech Startup Branding</span>
+              </div>
+              <div class="project-nav__arrow" aria-hidden="true">→</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Projects Section -->
+      <section class="related-projects" aria-labelledby="related-heading">
+        <div class="container">
+          <h2 id="related-heading" class="section__title">Related Projects</h2>
+          <div class="related-projects__grid">
+            <article class="related-project">
+              <a href="#" class="related-project__link">
+                <div class="related-project__image-container">
+                  <picture>
+                    <source
+                      srcset="assets/images/project-2.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="assets/images/project-2.jpg"
+                      alt="Mobile Banking App - UI/UX Design project"
+                      class="related-project__image"
+                      loading="lazy"
+                      width="300"
+                      height="200"
+                    />
+                  </picture>
+                  <div class="related-project__overlay">
+                    <span class="related-project__view-text">View Project</span>
+                  </div>
+                </div>
+                <div class="related-project__content">
+                  <span class="related-project__category">UI/UX Design</span>
+                  <h3 class="related-project__title">Mobile Banking App</h3>
+                  <p class="related-project__description">
+                    Intuitive mobile banking interface with focus on
+                    accessibility and user experience.
+                  </p>
+                </div>
+              </a>
+            </article>
+
+            <article class="related-project">
+              <a href="#" class="related-project__link">
+                <div class="related-project__image-container">
+                  <picture>
+                    <source
+                      srcset="assets/images/project-4.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="assets/images/project-4.jpg"
+                      alt="Project Management Tool - Full Stack development"
+                      class="related-project__image"
+                      loading="lazy"
+                      width="300"
+                      height="200"
+                    />
+                  </picture>
+                  <div class="related-project__overlay">
+                    <span class="related-project__view-text">View Project</span>
+                  </div>
+                </div>
+                <div class="related-project__content">
+                  <span class="related-project__category">Full Stack</span>
+                  <h3 class="related-project__title">
+                    Project Management Tool
+                  </h3>
+                  <p class="related-project__description">
+                    Collaborative project management platform with real-time
+                    updates and team features.
+                  </p>
+                </div>
+              </a>
+            </article>
+
+            <article class="related-project">
+              <a href="#" class="related-project__link">
+                <div class="related-project__image-container">
+                  <picture>
+                    <source
+                      srcset="assets/images/project-5.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      src="assets/images/project-5.jpg"
+                      alt="Corporate Website Redesign - Web Design project"
+                      class="related-project__image"
+                      loading="lazy"
+                      width="300"
+                      height="200"
+                    />
+                  </picture>
+                  <div class="related-project__overlay">
+                    <span class="related-project__view-text">View Project</span>
+                  </div>
+                </div>
+                <div class="related-project__content">
+                  <span class="related-project__category">Web Design</span>
+                  <h3 class="related-project__title">
+                    Corporate Website Redesign
+                  </h3>
+                  <p class="related-project__description">
+                    Modern redesign of corporate website with improved user
+                    experience and conversion rates.
+                  </p>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__content">
+          <p class="footer__copyright">
+            &copy; 2024 Rebecca Lee Jin. All rights reserved.
+          </p>
+          <div class="footer__social">
+            <!-- Social links will be added in later tasks -->
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div
+      id="lightbox-modal"
+      class="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+      aria-hidden="true"
+    >
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+      <div class="lightbox__container">
+        <div class="lightbox__header">
+          <h2 id="lightbox-title" class="lightbox__title">Project Image</h2>
+          <button
+            class="lightbox__close"
+            data-lightbox-close
+            aria-label="Close lightbox"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="lightbox__content">
+          <img id="lightbox-image" class="lightbox__image" src="" alt="" />
+        </div>
+        <div class="lightbox__navigation">
+          <button
+            class="lightbox__nav lightbox__nav--prev"
+            data-lightbox-prev
+            aria-label="Previous image"
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+          <button
+            class="lightbox__nav lightbox__nav--next"
+            data-lightbox-next
+            aria-label="Next image"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/utils/polyfills.js"></script>
+    <script src="scripts/utils/imageManifest.js"></script>
+    <script src="scripts/utils/imageOptimization.js"></script>
+    <script src="scripts/utils/pwa.js"></script>
+    <script src="scripts/utils/performance.js"></script>
+    <script src="scripts/utils/accessibility.js"></script>
+    <script src="scripts/utils/navigationIntegration.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/components/lightbox.js"></script>
+    <script src="scripts/components/pageTransitions.js"></script>
+    <!-- Browser compatibility testing (development only) -->
+    <script src="scripts/utils/browserTesting.js"></script>
+    <!-- Accessibility testing (development only) -->
+    <script src="scripts/utils/accessibilityTesting.js"></script>
+    <!-- User flow testing (development only) -->
+    <script src="scripts/utils/userFlowTesting.js"></script>
+  </body>
+</html>

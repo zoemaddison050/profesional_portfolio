@@ -1,0 +1,312 @@
+/* Progressive Web App Styles */
+
+/* Install Button */
+.pwa-install-btn {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius);
+  transition: all var(--transition-base);
+}
+
+.pwa-install-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.pwa-install-btn--floating {
+  position: fixed;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius-full);
+  padding: var(--space-3);
+  min-width: auto;
+}
+
+.pwa-install-btn--floating:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Connection Status */
+.connection-status {
+  position: fixed;
+  top: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  animation: slideDown var(--transition-base) ease-out;
+}
+
+.connection-status--offline {
+  background-color: var(--color-warning);
+  color: var(--color-warning-contrast);
+  border: 1px solid var(--color-warning-border);
+}
+
+.connection-status--online {
+  background-color: var(--color-success);
+  color: var(--color-success-contrast);
+  border: 1px solid var(--color-success-border);
+}
+
+.connection-status__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.connection-status__content svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Update Notification */
+.update-notification {
+  position: fixed;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  max-width: 400px;
+  margin: 0 auto;
+  z-index: 1001;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  animation: slideUp var(--transition-base) ease-out;
+}
+
+.update-notification__content {
+  padding: var(--space-4);
+}
+
+.update-notification__text {
+  margin-bottom: var(--space-3);
+}
+
+.update-notification__text strong {
+  display: block;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.update-notification__text p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.update-notification__actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+/* Loading States */
+.pwa-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.pwa-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-primary),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+  z-index: 1;
+}
+
+/* Skeleton Screens */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-background-alt) 25%,
+    var(--color-background) 50%,
+    var(--color-background-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.5s infinite;
+  border-radius: var(--border-radius);
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-text:last-child {
+  margin-bottom: 0;
+  width: 60%;
+}
+
+.skeleton-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius-full);
+}
+
+.skeleton-card {
+  padding: var(--space-4);
+  border-radius: var(--border-radius-lg);
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: var(--space-3);
+}
+
+/* PWA-specific responsive adjustments */
+@media (display-mode: standalone) {
+  /* Styles when app is installed as PWA */
+  .header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .pwa-install-btn {
+    display: none !important;
+  }
+
+  /* Add padding for devices with notches */
+  .container {
+    padding-left: max(var(--space-4), env(safe-area-inset-left));
+    padding-right: max(var(--space-4), env(safe-area-inset-right));
+  }
+}
+
+/* iOS PWA specific styles */
+@media (display-mode: standalone) and (-webkit-touch-callout: none) {
+  .header {
+    padding-top: max(var(--space-2), env(safe-area-inset-top));
+  }
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .pwa-install-btn--floating:hover {
+    transform: none;
+  }
+
+  .connection-status,
+  .update-notification {
+    animation: none;
+  }
+
+  .pwa-loading::before,
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .connection-status {
+    border-width: 2px;
+  }
+
+  .update-notification {
+    border-width: 2px;
+  }
+
+  .pwa-install-btn {
+    border-width: 2px;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .connection-status--offline {
+    background-color: var(--color-warning-dark, #f59e0b);
+    color: var(--color-warning-contrast-dark, #000);
+  }
+
+  .connection-status--online {
+    background-color: var(--color-success-dark, #10b981);
+    color: var(--color-success-contrast-dark, #000);
+  }
+
+  .update-notification {
+    background: var(--color-background-dark, #1f2937);
+    border-color: var(--color-border-dark, #374151);
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-background-dark, #374151) 25%,
+      var(--color-background-light-dark, #4b5563) 50%,
+      var(--color-background-dark, #374151) 75%
+    );
+  }
+}
+
+/* Print styles */
+@media print {
+  .pwa-install-btn,
+  .connection-status,
+  .update-notification,
+  .pwa-loading::before {
+    display: none !important;
+  }
+}

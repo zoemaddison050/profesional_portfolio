@@ -1,0 +1,35 @@
+/* Main Stylesheet - Portfolio Website */
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* Base Styles */
+@import "base/reset.css";
+@import "base/variables.css";
+@import "base/base.css";
+
+/* Layout Utilities */
+@import "utilities/layout.css";
+
+/* Component Styles */
+@import "components/buttons.css";
+@import "components/navigation.css";
+@import "components/hero.css";
+@import "components/about.css";
+@import "components/testimonials.css";
+@import "components/trustpilot.css";
+@import "components/contact.css";
+@import "components/sections.css";
+@import "components/cards.css";
+@import "components/forms.css";
+@import "components/footer.css";
+@import "components/project-detail.css";
+@import "components/pwa.css";
+
+/* Utility Classes */
+@import "utilities/spacing.css";
+@import "utilities/typography.css";
+@import "utilities/display.css";
+@import "utilities/images.css";
+@import "utilities/accessibility.css";
+@import "utilities/browser-compatibility.css";

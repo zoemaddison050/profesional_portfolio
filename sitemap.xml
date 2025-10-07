@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://rebeccaleejin.com/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://rebeccaleejin.com/assets/images/og-image.jpg</image:loc>
+      <image:title>Rebecca Lee Jin - Creative Web Designer & Developer</image:title>
+      <image:caption>Portfolio homepage featuring modern web design and development work</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Project Detail Page -->
+  <url>
+    <loc>https://rebeccaleejin.com/project-detail.html</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://rebeccaleejin.com/assets/images/project-1.jpg</image:loc>
+      <image:title>E-commerce Platform Project</image:title>
+      <image:caption>Full-stack e-commerce solution case study</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Portfolio Section (anchor link) -->
+  <url>
+    <loc>https://rebeccaleejin.com/#portfolio</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- About Section (anchor link) -->
+  <url>
+    <loc>https://rebeccaleejin.com/#about</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Services Section (anchor link) -->
+  <url>
+    <loc>https://rebeccaleejin.com/#services</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Section (anchor link) -->
+  <url>
+    <loc>https://rebeccaleejin.com/#contact</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

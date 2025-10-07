@@ -1,0 +1,481 @@
+/* Browser Compatibility and Fallbacks */
+
+/* CSS Grid Fallbacks */
+.portfolio__grid {
+  /* Flexbox fallback for older browsers */
+  display: flex;
+  flex-wrap: wrap;
+  margin: -var(--space-3);
+}
+
+.portfolio__item {
+  /* Flexbox fallback */
+  flex: 1 1 300px;
+  padding: var(--space-3);
+  min-width: 300px;
+}
+
+/* Modern browsers with CSS Grid support */
+@supports (display: grid) {
+  .portfolio__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+    margin: 0;
+  }
+
+  .portfolio__item {
+    flex: none;
+    padding: 0;
+    min-width: auto;
+  }
+}
+
+/* CSS Custom Properties Fallbacks */
+:root {
+  /* Fallback colors for browsers that don't support custom properties */
+  color: #1f2937;
+  background-color: #ffffff;
+}
+
+/* Fallback for browsers without custom property support */
+.btn--primary {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.btn--secondary {
+  background-color: #6b7280;
+  color: #ffffff;
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+}
+
+/* Modern browsers with custom properties */
+@supports (color: var(--color-primary)) {
+  .btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .btn--secondary {
+    background-color: var(--color-text-secondary);
+    color: var(--color-background);
+  }
+
+  .btn--outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+}
+
+/* Flexbox Fallbacks for older browsers */
+.nav__menu {
+  /* Float fallback for very old browsers */
+  float: right;
+}
+
+.nav__item {
+  /* Inline-block fallback */
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+/* Modern browsers with flexbox */
+@supports (display: flex) {
+  .nav__menu {
+    display: flex;
+    float: none;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav__item {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+/* Sticky positioning fallbacks */
+.header {
+  /* Fixed fallback for browsers without sticky support */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-header);
+}
+
+@supports (position: sticky) {
+  .header {
+    position: sticky;
+  }
+}
+
+/* Object-fit fallbacks for images */
+.portfolio-card__image {
+  /* Fallback for browsers without object-fit */
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@supports (object-fit: cover) {
+  .portfolio-card__image {
+    object-fit: cover;
+    background-image: none;
+  }
+}
+
+/* CSS Transforms fallbacks */
+.portfolio-card {
+  /* Fallback without transforms */
+  transition: box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+@supports (transform: translateY(-5px)) {
+  .portfolio-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* CSS Filters fallbacks */
+.portfolio-card__image {
+  /* Fallback without filters */
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-card__image {
+  opacity: 0.8;
+}
+
+@supports (filter: brightness(0.9)) {
+  .portfolio-card__image {
+    filter: brightness(1);
+    transition: filter 0.3s ease;
+    opacity: 1;
+  }
+
+  .portfolio-card:hover .portfolio-card__image {
+    filter: brightness(0.9);
+    opacity: 1;
+  }
+}
+
+/* Backdrop-filter fallbacks */
+.nav {
+  /* Fallback background */
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .nav {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* CSS Clip-path fallbacks */
+.hero::before {
+  /* Fallback without clip-path */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, var(--color-background));
+}
+
+@supports (clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%)) {
+  .hero::before {
+    display: none;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: var(--color-background);
+    clip-path: polygon(0 85%, 100% 100%, 100% 100%, 0 100%);
+  }
+}
+
+/* CSS Scroll Behavior fallbacks */
+html {
+  /* Fallback for browsers without smooth scrolling */
+  scroll-behavior: auto;
+}
+
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* CSS Gap fallbacks for flexbox */
+.skills-grid {
+  /* Fallback using margins */
+  margin: -var(--space-3);
+}
+
+.skill-category {
+  margin: var(--space-3);
+}
+
+@supports (gap: 1rem) {
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin: 0;
+  }
+
+  .skill-category {
+    margin: 0;
+  }
+}
+
+/* CSS Aspect Ratio fallbacks */
+.portfolio-card__image-container {
+  /* Fallback using padding-bottom technique */
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 66.67%; /* 3:2 aspect ratio */
+  overflow: hidden;
+}
+
+.portfolio-card__image-container .portfolio-card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@supports (aspect-ratio: 3 / 2) {
+  .portfolio-card__image-container {
+    aspect-ratio: 3 / 2;
+    height: auto;
+    padding-bottom: 0;
+  }
+
+  .portfolio-card__image-container .portfolio-card__image {
+    position: static;
+  }
+}
+
+/* CSS Logical Properties fallbacks */
+.btn {
+  /* Physical properties fallback */
+  margin-left: var(--space-2);
+  margin-right: var(--space-2);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@supports (margin-inline: 1rem) {
+  .btn {
+    margin-inline: var(--space-2);
+    padding-inline: var(--space-4);
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* CSS Container Queries fallbacks */
+.portfolio-card {
+  /* Default responsive behavior */
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .portfolio-card {
+    width: calc(50% - var(--space-3));
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card {
+    width: calc(33.333% - var(--space-4));
+  }
+}
+
+/* Modern browsers with container queries */
+@supports (container-type: inline-size) {
+  .portfolio__grid {
+    container-type: inline-size;
+  }
+
+  @container (min-width: 768px) {
+    .portfolio-card {
+      width: calc(50% - var(--space-3));
+    }
+  }
+
+  @container (min-width: 1024px) {
+    .portfolio-card {
+      width: calc(33.333% - var(--space-4));
+    }
+  }
+}
+
+/* CSS Subgrid fallbacks */
+.skill-category {
+  /* Fallback layout */
+  margin-bottom: var(--space-6);
+}
+
+@supports (grid-template-rows: subgrid) {
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .skill-category {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+  }
+}
+
+/* CSS :focus-visible fallbacks */
+.btn:focus {
+  /* Fallback focus styles */
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@supports selector(:focus-visible) {
+  .btn:focus {
+    outline: none;
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* CSS :has() selector fallbacks */
+.form__group {
+  /* Default styling */
+  margin-bottom: var(--space-4);
+}
+
+.form__input--error + .form__error {
+  /* Fallback for error styling */
+  display: block;
+  color: var(--color-error);
+}
+
+@supports selector(:has(.form__input--error)) {
+  .form__group:has(.form__input--error) {
+    border-left: 3px solid var(--color-error);
+    padding-left: var(--space-3);
+  }
+}
+
+/* CSS Cascade Layers fallbacks */
+/* Ensure proper cascade without layers */
+.btn {
+  /* Base button styles with higher specificity */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Modern browsers with cascade layers */
+@supports (color: color(display-p3 1 0 0)) {
+  @layer base, components, utilities;
+
+  @layer base {
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+/* Print styles for better cross-browser support */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

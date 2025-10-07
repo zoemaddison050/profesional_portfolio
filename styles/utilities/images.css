@@ -1,0 +1,354 @@
+/* Image Utilities and Loading States */
+
+/* Base image styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lazy loading image states */
+.img-placeholder {
+  opacity: 0.7;
+  filter: blur(2px);
+  transition: all var(--transition-base);
+  background-color: var(--color-background-alt);
+}
+
+.img-loaded {
+  opacity: 0;
+  animation: fadeInImage var(--transition-base) ease-out forwards;
+}
+
+.img-error {
+  opacity: 0.8;
+  filter: grayscale(100%);
+  border: 2px dashed var(--color-border);
+}
+
+/* Loading animation */
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer loading effect */
+.img-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-background-alt) 25%,
+    var(--color-background) 50%,
+    var(--color-background-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Progressive image enhancement */
+.progressive-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.progressive-image__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px);
+  transform: scale(1.1);
+  transition: opacity var(--transition-slow);
+}
+
+.progressive-image__main {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.progressive-image__main.loaded {
+  opacity: 1;
+}
+
+.progressive-image__main.loaded + .progressive-image__placeholder {
+  opacity: 0;
+}
+
+/* Enhanced Responsive Image Containers */
+.img-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-background-alt);
+  border-radius: var(--radius-base);
+}
+
+/* Aspect Ratio Containers */
+.img-container--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.img-container--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.img-container--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.img-container--3-2 {
+  aspect-ratio: 3 / 2;
+}
+
+.img-container--3-4 {
+  aspect-ratio: 3 / 4;
+}
+
+.img-container--2-3 {
+  aspect-ratio: 2 / 3;
+}
+
+.img-container--21-9 {
+  aspect-ratio: 21 / 9;
+}
+
+.img-container--auto {
+  aspect-ratio: auto;
+}
+
+.img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+/* Object fit utilities */
+.img-cover {
+  object-fit: cover;
+}
+
+.img-contain {
+  object-fit: contain;
+}
+
+.img-fill {
+  object-fit: fill;
+}
+
+.img-scale-down {
+  object-fit: scale-down;
+}
+
+.img-none {
+  object-fit: none;
+}
+
+/* Object position utilities */
+.img-center {
+  object-position: center;
+}
+
+.img-top {
+  object-position: top;
+}
+
+.img-bottom {
+  object-position: bottom;
+}
+
+.img-left {
+  object-position: left;
+}
+
+.img-right {
+  object-position: right;
+}
+
+.img-top-left {
+  object-position: top left;
+}
+
+.img-top-right {
+  object-position: top right;
+}
+
+.img-bottom-left {
+  object-position: bottom left;
+}
+
+.img-bottom-right {
+  object-position: bottom right;
+}
+
+/* Loading spinner for images */
+.img-loading {
+  position: relative;
+}
+
+.img-loading::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 2;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error state styling */
+.img-error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background-color: var(--color-background-alt);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.img-error-icon {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-2);
+  opacity: 0.5;
+}
+
+.img-error-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* WebP support detection */
+.no-webp .webp-image {
+  display: none;
+}
+
+.webp .fallback-image {
+  display: none;
+}
+
+/* Portfolio specific image styles */
+.portfolio-card__image {
+  transition: all var(--transition-base);
+}
+
+.portfolio-card__image.img-placeholder {
+  filter: blur(2px) brightness(0.9);
+}
+
+.portfolio-card__image.img-loaded {
+  filter: none;
+}
+
+.portfolio-card__image.img-error {
+  filter: grayscale(100%) brightness(0.8);
+}
+
+/* Lazy loading intersection styles */
+.lazy-image {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+}
+
+.lazy-image.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* High DPI / Retina display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .img-high-dpi {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .img-placeholder,
+  .img-loaded,
+  .progressive-image__placeholder,
+  .progressive-image__main,
+  .lazy-image {
+    transition: none;
+    animation: none;
+  }
+
+  .img-shimmer {
+    animation: none;
+    background: var(--color-background-alt);
+  }
+}
+
+/* Print styles */
+@media print {
+  .img-placeholder,
+  .img-loading::before {
+    display: none;
+  }
+
+  img {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+/* Focus styles for accessible image interactions */
+img:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .img-placeholder {
+    background-color: var(--color-background-dark, #374151);
+  }
+
+  .img-error-container {
+    background-color: var(--color-background-dark, #374151);
+  }
+
+  .img-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-background-dark, #374151) 25%,
+      var(--color-background-light, #4b5563) 50%,
+      var(--color-background-dark, #374151) 75%
+    );
+  }
+}
