@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-6);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-12);
   flex-wrap: wrap;
 }
 
@@ -869,14 +869,18 @@
 /* Fix for very small screens */
 @media (max-width: 480px) {
   .about__content {
-    gap: var(--space-6);
+    gap: var(--space-4);
+  }
+
+  .about__labels {
+    margin-bottom: var(--space-8);
   }
 
   .about__profile,
   .about__experience,
   .about__examinations {
-    padding: var(--space-6);
-    gap: var(--space-6);
+    padding: var(--space-4);
+    gap: var(--space-4);
   }
 
   .about__image-container {
@@ -908,6 +912,17 @@
   .examination-item {
     font-size: var(--font-size-sm);
     padding: var(--space-2);
+  }
+}
+
+/* Better mobile spacing for all mobile devices */
+@media (max-width: 768px) {
+  .about__content {
+    gap: var(--space-6);
+  }
+
+  .about__labels {
+    margin-bottom: var(--space-10);
   }
 }
 
