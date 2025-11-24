@@ -660,6 +660,10 @@
     const forms = document.querySelectorAll("form");
 
     forms.forEach((form) => {
+      // Skip Netlify forms - let them submit naturally
+      if (form.hasAttribute("netlify")) {
+        return;
+      }
       form.addEventListener("submit", handleFormSubmit);
 
       // Clean up any existing error states on page load
