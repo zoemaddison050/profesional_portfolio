@@ -745,10 +745,10 @@
       return;
     }
 
-    // Check if this is the contact form with Web3Forms
+    // Check if this is the contact form
     if (form.id === "contact-form") {
       e.preventDefault(); // Prevent default to handle with JavaScript
-      await handleWeb3FormsSubmission(form, formData, submitButton);
+      await handleContactFormSubmission(form, formData, submitButton);
     } else {
       // Handle other forms with generic logic
       e.preventDefault();
@@ -756,7 +756,7 @@
     }
   }
 
-  async function handleWeb3FormsSubmission(form, formData, submitButton) {
+  async function handleContactFormSubmission(form, formData, submitButton) {
     try {
       // Show loading state
       if (submitButton) {
@@ -764,32 +764,30 @@
         submitButton.disabled = true;
       }
 
-      // Check for hCaptcha response
-      const captchaResponse = window.hcaptcha
-        ? window.hcaptcha.getResponse()
-        : null;
-      if (captchaResponse) {
-        formData.append("h-captcha-response", captchaResponse);
+      // Check honeypot field
+      const botField = formData.get("bot-field");
+
+      if (botField) {
+        // Spam detected - silently fail
+        console.warn("⚠️ Spam detected via honeypot");
+        window.location.href = "success.html"; // Show success to bot
+        return;
       }
 
-      // Submit to Web3Forms
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // Submit to Netlify Forms
+      const response = await fetch("/", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
-        // Redirect to success page
+      if (response.ok) {
         window.location.href = "success.html";
       } else {
-        // Redirect to error page
         window.location.href = "error.html";
       }
     } catch (error) {
       console.error("❌ Form submission error:", error);
-      // Redirect to error page on any error
       window.location.href = "error.html";
     }
   }
@@ -832,28 +830,6 @@
         isValid = false;
       }
     });
-
-    // Check hCaptcha if present
-    if (form.id === "contact-form" && window.hcaptcha) {
-      const captchaResponse = window.hcaptcha.getResponse();
-      if (!captchaResponse) {
-        isValid = false;
-        // Show captcha error message
-        const captchaContainer = form.querySelector(".form__captcha-container");
-        if (captchaContainer) {
-          let errorDiv = captchaContainer.querySelector(".form__error");
-          if (!errorDiv) {
-            errorDiv = document.createElement("div");
-            errorDiv.className = "form__error";
-            errorDiv.setAttribute("role", "alert");
-            errorDiv.setAttribute("aria-live", "polite");
-            captchaContainer.appendChild(errorDiv);
-          }
-          errorDiv.textContent = "Please complete the captcha verification.";
-          errorDiv.classList.add("show");
-        }
-      }
-    }
 
     return isValid;
   }

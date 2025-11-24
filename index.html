@@ -144,10 +144,42 @@
       Rebecca Lee Jin - Licensed Investment Consultant | J.P. Morgan Securities
     </title>
     <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">var _smartsupp = _smartsupp || {};_smartsupp.key = 'c541f8fcbb2ed976098196ed81c2f74be9a6dbb1';window.smartsupp||(function(d) {var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];s=d.getElementsByTagName('script')[0];c=d.createElement('script');c.type='text/javascript';c.charset='utf-8';c.async=true;c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);})(document);</script>
-    <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "c541f8fcbb2ed976098196ed81c2f74be9a6dbb1";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
+    <noscript>
+      Powered by
+      <a href="https://www.smartsupp.com" target="_blank"
+        >Smartsupp</a
+      ></noscript
+    >
   </head>
   <body>
+    <!-- Hidden form for Netlify Forms detection (required for build-time processing) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <!-- Skip Navigation Links for Accessibility -->
     <div class="skip-links">
       <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -596,10 +628,10 @@
               />
               <div class="testimonial__name">Emily Rodriguez</div>
               <p class="testimonial__comment">
-                "Working with Rebecca has been transformative for me. Her strategic approach to portfolio diversification
-                and risk management gave me the confidence I needed. She's
-                professional, knowledgeable, and truly cares about her clients'
-                success."
+                "Working with Rebecca has been transformative for me. Her
+                strategic approach to portfolio diversification and risk
+                management gave me the confidence I needed. She's professional,
+                knowledgeable, and truly cares about her clients' success."
               </p>
             </div>
 
@@ -1050,27 +1082,22 @@
           <div class="contact__content">
             <div class="contact__form-container">
               <form
-                action="https://api.web3forms.com/submit"
                 id="contact-form"
+                name="contact"
                 method="POST"
                 class="contact__form"
-                novalidate
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
               >
-                <!-- Web3Forms configuration -->
-                <input
-                  type="hidden"
-                  name="access_key"
-                  value="51fa5d15-c3ff-4aee-ac51-cd88cded5a79"
-                />
-                <input
-                  type="hidden"
-                  name="subject"
-                  value="New Contact Form Submission from Portfolio"
-                />
-                <!-- Honeypot spam protection -->
-                <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+                <!-- Netlify honeypot field (hidden from users) -->
+                <p class="hidden" style="display: none">
+                  <label>
+                    Don't fill this out if you're human:
+                    <input name="bot-field" tabindex="-1" autocomplete="off" />
+                  </label>
+                </p>
 
-                <div class="form__group"></div>
+                <div class="form__group">
                   <label for="full-name" class="form__label">
                     Full Name <span class="form__required">*</span>
                   </label>
@@ -1081,7 +1108,11 @@
                     class="form__input"
                     required
                     aria-describedby="full-name-error"
-                    style="border: 2px solid #4a5568 !important; border-radius: 8px !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;"
+                    style="
+                      border: 2px solid #4a5568 !important;
+                      border-radius: 8px !important;
+                      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+                    "
                   />
                   <div
                     id="full-name-error"
@@ -1102,7 +1133,11 @@
                     class="form__input"
                     required
                     aria-describedby="email-error"
-                    style="border: 2px solid #4a5568 !important; border-radius: 8px !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;"
+                    style="
+                      border: 2px solid #4a5568 !important;
+                      border-radius: 8px !important;
+                      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+                    "
                   />
                   <div
                     id="email-error"
@@ -1124,7 +1159,12 @@
                     required
                     aria-describedby="message-error"
                     placeholder="Tell me about your investment goals and how I can help you..."
-                    style="border: 2px solid #4a5568 !important; border-radius: 8px !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important; min-height: 140px !important;"
+                    style="
+                      border: 2px solid #4a5568 !important;
+                      border-radius: 8px !important;
+                      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+                      min-height: 140px !important;
+                    "
                   ></textarea>
                   <div
                     id="message-error"
@@ -1132,13 +1172,6 @@
                     role="alert"
                     aria-live="polite"
                   ></div>
-                </div>
-
-                <!-- Step 1: Add hCaptcha widget -->
-                <div class="form__group">
-                  <div class="form__captcha-container">
-                    <div class="h-captcha" data-captcha="true" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
-                  </div>
                 </div>
 
                 <div class="form__actions">
@@ -1393,10 +1426,6 @@
 
     <!-- Main application script (defer) -->
     <script src="scripts/main.js" defer></script>
-
-    <!-- External scripts (async) -->
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-    <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <!-- Development/testing scripts (defer, can be removed in production) -->
     <script src="scripts/utils/browserTesting.js" defer></script>
