@@ -735,64 +735,37 @@
 
   async function handleFormSubmit(e) {
     const form = e.target;
-    const formData = new FormData(form);
     const submitButton = form.querySelector('button[type="submit"]');
-    const resultDiv = document.getElementById("form-result");
 
-    // Validate form
-    if (!validateForm(form)) {
-      e.preventDefault();
-      return;
-    }
-
-    // Check if this is the contact form
+    // For Netlify contact form, just validate and let it submit naturally
     if (form.id === "contact-form") {
-      e.preventDefault(); // Prevent default to handle with JavaScript
-      await handleContactFormSubmission(form, formData, submitButton);
-    } else {
-      // Handle other forms with generic logic
-      e.preventDefault();
-      await handleGenericFormSubmission(form, formData, submitButton);
-    }
-  }
+      // Validate form
+      if (!validateForm(form)) {
+        e.preventDefault();
+        return;
+      }
 
-  async function handleContactFormSubmission(form, formData, submitButton) {
-    try {
       // Show loading state
       if (submitButton) {
         submitButton.classList.add("btn--loading");
         submitButton.disabled = true;
       }
 
-      // Check honeypot field
-      const botField = formData.get("bot-field");
-
-      if (botField) {
-        // Spam detected - silently fail
-        console.warn("⚠️ Spam detected via honeypot");
-        window.location.href = "success.html"; // Show success to bot
-        return;
-      }
-
-      // Submit to Netlify Forms
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-      });
-
-      if (response.ok) {
-        window.location.href = "success.html";
-      } else {
-        window.location.href = "error.html";
-      }
-    } catch (error) {
-      console.error("❌ Form submission error:", error);
-      window.location.href = "error.html";
+      // Let the form submit naturally to Netlify (don't prevent default)
+      return;
     }
+
+    // For other forms, validate and handle with custom logic
+    if (!validateForm(form)) {
+      e.preventDefault();
+      return;
+    }
+
+    e.preventDefault();
+    await handleGenericFormSubmission(form, submitButton);
   }
 
-  async function handleGenericFormSubmission(form, formData, submitButton) {
+  async function handleGenericFormSubmission(form, submitButton) {
     // Show loading state
     if (submitButton) {
       submitButton.classList.add("btn--loading");

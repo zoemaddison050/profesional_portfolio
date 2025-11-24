@@ -7,17 +7,6 @@
 [build.processing]
   skip_processing = false
 
-# Redirect rules for success and error pages
-[[redirects]]
-  from = "/success"
-  to = "/success.html"
-  status = 200
-
-[[redirects]]
-  from = "/error"
-  to = "/error.html"
-  status = 200
-
 # Headers for security
 [[headers]]
   for = "/*"
